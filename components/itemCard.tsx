@@ -1,7 +1,11 @@
 import { IPost } from "../interfaces";
 import Link from "next/link"
 
-const ItemCard = ({ createdAt, id, tags, thumbnail, title }: IPost) => {
+interface ItemCardProps extends IPost {
+  readMoreOff?: boolean
+}
+
+const ItemCard = ({ createdAt, id, tags, thumbnail, title, readMoreOff = false }: ItemCardProps) => {
   return (
     <div className="m-10">
       <div className="mb-4 text-white">
@@ -12,12 +16,11 @@ const ItemCard = ({ createdAt, id, tags, thumbnail, title }: IPost) => {
           <div className="mr-4">
             {(new Date(createdAt)).toLocaleString()}
           </div>
-          <Link href={`/post/${id}`}>
+          {!readMoreOff && <Link href={`/post/${id}`}>
             <div className="font-sans hover:text-indigo-700 transition-all cursor-pointer link-underline">
               Read more
             </div>
-          </Link>
-
+          </Link>}
         </div>
       </div>
       <img className="w-full" src={thumbnail.downloadUrl} alt={title} />

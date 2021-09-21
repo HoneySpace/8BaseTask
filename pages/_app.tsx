@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ApolloProvider {...{ client }}>
       <FilterContextProvider>
         <Component {...pageProps} />
-        <div id="modalPortal" className="absolute z-index-10 h-screen w-screen top-0 pointer-events-none">
+        <div id="modalPortal" className="absolute z-index-10 h-screen w-full top-0 pointer-events-none">
         </div>
       </FilterContextProvider>
     </ApolloProvider>

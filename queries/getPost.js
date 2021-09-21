@@ -15,7 +15,7 @@ export const POST_WITH_COMMENTS_QUERY = gql`
         thumbnail {
           downloadUrl
         }
-        comments {
+        comments(sort: { createdAt: DESC }) {
           items {
             content
             createdAt

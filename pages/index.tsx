@@ -10,6 +10,7 @@ import { useContext, useEffect, useState } from 'react'
 import { useFilteredPostsList } from '../hooks/useFilteredPostsList'
 import FilterSelect from '../components/filterSelect'
 import FilterContext from '../context/filter'
+import LoaderIcon from '../components/icons/loader'
 
 const Home: NextPage = () => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -17,20 +18,28 @@ const Home: NextPage = () => {
   const { checked } = useContext(FilterContext)
   const { loading, error, data } = useFilteredPostsList(checked, { pollInterval: 500 })
 
-  useEffect(() => {
-    console.log({ data, error });
-  })
+  if (error)
+    return <div className="bg-indigo-900 place-items-center grid text-white w-full h-full ">
+      <div>
+        Возникла ошибка :с
+      </div>
+    </div>
 
   return (
     <div className="bg-indigo-900 w-screen h-screen grid grid-cols-12" >
 
       <div className="col-span-6 col-start-4 bg-yellow-400 px-4 pb-4">
-        <Virtuoso
-          className="styled-scroll"
-          style={{ height: "100%" }}
-          totalCount={data?.postsList.items.length}
-          itemContent={index => <ItemCard {...(data?.postsList.items[index] as IPost)} />}
-        />
+        {loading ? <div className="h-screen w-full grid place-items-center">
+          <div className="h-16 text-white">
+            <LoaderIcon />
+          </div>
+        </div>
+          : <Virtuoso
+            className="styled-scroll"
+            style={{ height: "100%" }}
+            totalCount={data?.postsList.items.length}
+            itemContent={index => <ItemCard {...(data?.postsList.items[index] as IPost)} />}
+          />}
       </div>
       <div className="col-span-3 col-start-10 p-4">
         <div onClick={(e) => { e.stopPropagation(), setModalOpen(true) }} className="w-8 text-white hover:text-yellow-400 transition-all cursor-pointer">
