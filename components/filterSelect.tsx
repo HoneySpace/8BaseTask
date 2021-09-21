@@ -22,7 +22,7 @@ const FilterSelect = () => {
   return (
     <div className="text-lg">
       {tags.map(tag =>
-        <div className="flex items-center">
+        <div key={tag} className="flex items-center">
           <input checked={checked.includes(tag)} type="checkbox" data-tag={tag} className="mr-2" onChange={onChange} />
           <div>
             {tag}

@@ -39,7 +39,7 @@ const Post = () => {
     </div>
 
   return (
-    <div className="bg-indigo-900 w-full h-full grid grid-cols-12" >
+    <div className="bg-indigo-900 w-full h-full grid grid-cols-12 overflow-auto" >
       <div className="col-span-6 col-start-4 bg-yellow-400 px-4 pb-4 text-white font-medium">
         {loading ? <div className="h-screen w-full grid place-items-center">
           <div className="h-16">
@@ -68,7 +68,7 @@ const Post = () => {
               </div>
               <div>
                 {data?.postsList.items[0]?.comments?.items.map(comment =>
-                  <div className="mb-4">
+                  <div key={`${comment.content}-${comment.createdAt}`} className="mb-4">
                     <div className="text-lg">
                       {(new Date(comment.createdAt)).toLocaleString()}
                     </div>

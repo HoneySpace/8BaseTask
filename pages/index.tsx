@@ -26,8 +26,7 @@ const Home: NextPage = () => {
     </div>
 
   return (
-    <div className="bg-indigo-900 w-screen h-screen grid grid-cols-12" >
-
+    <div className="bg-indigo-900 w-screen h-screen grid grid-cols-12 overflow-auto">
       <div className="col-span-6 col-start-4 bg-yellow-400 px-4 pb-4">
         {loading ? <div className="h-screen w-full grid place-items-center">
           <div className="h-16 text-white">
