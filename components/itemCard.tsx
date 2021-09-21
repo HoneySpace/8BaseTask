@@ -13,7 +13,7 @@ const ItemCard = ({ createdAt, id, tags, thumbnail, title }: IPost) => {
             {(new Date(createdAt)).toLocaleString()}
           </div>
           <Link href={`/post/${id}`}>
-            <div className="font-sans hover:text-indigo-700 transition-all cursor-pointer">
+            <div className="font-sans hover:text-indigo-700 transition-all cursor-pointer link-underline">
               Read more
             </div>
           </Link>

@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client"
+import { FilterContextProvider } from '../context/filter'
 
 const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_REACT_APP_API_ENDPOINT_URI,
@@ -14,10 +15,11 @@ const client = new ApolloClient({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider {...{ client }}>
-      <Component {...pageProps} />
-      <div id="modalPortal">
-
-      </div>
+      <FilterContextProvider>
+        <Component {...pageProps} />
+        <div id="modalPortal" className="absolute z-index-10 h-screen w-screen top-0 pointer-events-none">
+        </div>
+      </FilterContextProvider>
     </ApolloProvider>
   )
 }
