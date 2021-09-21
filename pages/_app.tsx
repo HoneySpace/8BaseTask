@@ -15,6 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider {...{ client }}>
       <Component {...pageProps} />
+      <div id="modalPortal">
+
+      </div>
     </ApolloProvider>
   )
 }
